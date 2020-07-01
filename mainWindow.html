@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>Project</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="css/main.css"></link>
+		<meta charset="UTF-8">
+	<head>
+	<body>
+		<canvas id="myCanvas"></canvas>
+		<div id="info-board">
+			<div onclick="closeInfoBoard()" class="btn btn-close">></div>
+			<article id="info-board-article">
+				<h1 id="info-board-article-title"></h1>
+				<p id="info-board-article-text"></p>
+				<section id="picture-gallery">
+					<div id="slideshow">
+					</div>
+				</section>
+			</article>
+		</div>
+		<script type="x-shader/x-vertex" id="vertexShader">
+		varying vec2 vUv;
+
+			void main() 
+			{
+				vUv = uv;
+
+				vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+				gl_Position = projectionMatrix * modelViewPosition;
+			}
+		</script>
+		<script type="z-shader/x-fragment" id="fragmentShader">
+			uniform sampler2D textureOne;
+			uniform sampler2D textureTwo;
+			uniform int ratio;
+
+			varying vec2 vUv;
+
+			void main() {
+			    vec4 Ca = texture2D(textureOne, vUv);
+			    vec4 Cb = texture2D(textureTwo, vUv);
+			    float fraction = float(ratio) * 0.1;
+
+			    float r = (Ca.r*fraction + Cb.r*(1.0 - fraction))*0.5;
+			    float g = (Ca.g*fraction + Cb.g*(1.0 - fraction))*0.5;
+			    float b = (Ca.b*fraction + Cb.b*(1.0 - fraction))*0.5;
+			    gl_FragColor = vec4(r, g, b, 1.0);
+			}
+		</script>
+		<script src="js/three.js"></script>
+		<script src="node_modules/three/examples/js/controls/OrbitControls.js"></script>
+		<script src="node_modules/three/examples/js/utils/SceneUtils.js"></script>
+		<script src="js/InfoBoard.js"></script>
+		<script src="js/PlantSkeleton.js"></script>
+		<script src="js/Leaf.js"></script>
+		<script src="js/Petals.js"></script>
+		<script src="js/FruitsGenerator.js"></script>
+		<script src="js/Stem.js"></script>
+		<script src="js/Tree.js"></script>
+		<script src="js/TreeGeometry.js"></script>
+		<script src="js/TreeHelper.js"></script>
+		<script src="js/inflate.min.js"></script>
+		<script src="js/loaders/FBXLoader.js"></script>
+		<script src="js/loaders/OBJLoader.js"></script>
+		<script src="js/controller.js"></script>
+	</body>
+<html>

@@ -1,0 +1,130 @@
+
+body {
+	margin: 0;
+	overflow: hidden;
+	font-size: 90%;
+	font-family: 'Roboto', sans-serif;
+	text-align: justify;
+	text-justify: inter-word;
+}
+canvas {
+	flex: 0 1 auto;
+}
+
+#info-board-article {
+	display: flex;
+	justify-content: space-evenly;
+    flex-direction: column;
+}
+#info-board {
+	display: flex;
+	flex-direction: row;
+    z-index: 10;
+    position: absolute;
+    right: 0;
+    opacity: 0;
+	top: 0;
+    height: 100%;
+    background-color: #111111;
+    color: white;
+    padding: 2rem;
+    width: 55%;
+    box-sizing: border-box;
+}
+
+#info-board-footer {
+	display: flex;
+	justify-content: flex-end;
+}
+
+#info-board-footer button{
+	background-color: transparent;
+    color: white;
+    padding: 0.5rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+}
+
+.show-info-board {
+	animation: showInfoBoard 5s;
+	opacity: 1 !important;
+}
+
+.hide-info-board {
+	width: 0%;
+	opacity: 0;
+	animation: hideInfoBoard 5s;
+}
+
+.btn.btn-close {
+	width: 50px;
+	height: 50px;
+	border-radius: 30px;
+	border: 1px solid white;
+	color: white;
+	background-color: black;
+	text-align: center;
+	line-height: 50px;
+	left: -25px;
+	position: absolute;
+	align-self: center;
+}
+
+#picture-gallery {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#info-board-article-title,
+#info-board-article-text {
+	padding: 2rem;
+	padding-top: 0.5rem;
+	line-height: 1.5rem;
+}
+
+#slideshow {
+	display: flex;
+	min-width: 55%;
+	max-width: 55%;
+	flex-direction: row;
+	flex: 0 1 55%;
+	justify-content: center;
+}
+
+#slideshow img {
+	height: 20rem;
+	width: 2rem;
+    transform: rotateY(80deg);
+    flex: 0 0 auto;
+}
+
+#slideshow img.current {
+	width: initial;
+	transform: rotateY(0deg);
+	animation: showPicture 4s;
+}
+
+#slideshow img.previous {
+	animation: hidePicture 4s;
+}
+
+@keyframes showInfoBoard {
+	from { width: 0; opacity: 0; }
+	to { width: 55%; opacity: 1; };
+}
+
+@keyframes hideInfoBoard {
+	from { width: 55%; opacity: 1; }
+	to { width: 0%; opacity: 0; };
+}
+
+@keyframes showPicture {
+	from { transform: rotateY(80deg) }
+	to { transform: rotateY(0deg); }
+}
+
+@keyframes hidePicture {
+	from { transform: rotateY(0deg); }
+	to { transform: rotateY(80deg); width: 2rem; }
+}
