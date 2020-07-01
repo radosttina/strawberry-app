@@ -8,3 +8,7 @@
 <code>npm install</code>
 <br>
 <code>http-server</code>
+
+
+![models](models.jpg)
+![ui](UI.jpg)
